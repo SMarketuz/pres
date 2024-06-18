@@ -42,7 +42,6 @@ router.post('/create', async (req, res) => {
         res.json({
             status: true,
             message: "Foidalanuvchi ro'yxatdan o'tdi",
-            data: user,
         })
 
     } catch (err) {
