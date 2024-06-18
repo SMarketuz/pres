@@ -16,7 +16,7 @@ router.post('/create', async (req, res) => {
             password: await bcrypt.hash(password , 10),
             gender,
             name,
-            userId: dataLenght.length == 0 ? 1 : ''
+            userId: dataLenght.length == 0 ? 1 : dataLenght.length
         })
         await user.save()
 
