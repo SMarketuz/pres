@@ -16,9 +16,8 @@ router.post('/login', async (req, res) => {
 
     try {
         const user = await UserRegister.findOne({ phoneNumber })
-
+        
         const validPassword = await bcrypt.compare(password, user.password)
-
 
         if (!user)
             return res.status(400).json({
@@ -37,7 +36,8 @@ router.post('/login', async (req, res) => {
         res.json({
             status: true,
             message: "Foidalanuvchi profilga kirdi",
-            token: token
+            token: token,
+            user_id: user._id
         })
 
     } catch (error) {

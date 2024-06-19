@@ -26,12 +26,12 @@ router.post('/create',auth, async (req, res) => {
     if (trecCodeGet)
         return res.status(400).json({
             status: false,
-            message: "Bunday telefon raqam mavjud"
+            message: "Bunday Tovar mavjud"
         })
   
     res.json({
         status: true,
-        message: "Foidalanuvchi ro'yxatdan o'tdi",
+        message: "Tovar qo'shildi",
         data: product,
     })
     try {
@@ -41,12 +41,18 @@ router.post('/create',auth, async (req, res) => {
             message: "Serverda muammo mavjud"
         })
     }
+}) 
+
+router.get('/get',auth, async (req , res) => {
+    const data = await Product.find()
+    .select({__v: 0})
+    .populate('userId')
+    res.json({data, massage: "Barcha tovarlar"})
 })
 
-// router.get('/get',auth, async (req , res) => {
-//     const data = await User.findById({_id: req.user._id})
-//     .select({password: 0})
-//     res.json(data)
-// })
+router.delete('/delete/:id',auth, async (req , res) => {
+    const data = await Product.deleteOne({_id: req.params.id})
+    res.json({data, massage: "Tovar ochirildi"})
+})
 
 module.exports = router
