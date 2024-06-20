@@ -44,7 +44,7 @@ router.post('/create',auth, async (req, res) => {
 }) 
 
 router.get('/get',auth, async (req , res) => {
-    const data = await (await Product.find()).reverse()
+    const data = await await Product.find().reverse()
     .select({__v: 0})
     .populate('userId')
     res.json({data, massage: "Barcha tovarlar"})
