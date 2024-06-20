@@ -37,7 +37,8 @@ router.post('/login', async (req, res) => {
             status: true,
             message: "Foidalanuvchi profilga kirdi",
             token: token,
-            user_id: user._id
+            user_id: user._id,
+            userId: user.userId
         })
 
     } catch (error) {
