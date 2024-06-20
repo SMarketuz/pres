@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 
 router.post('/create', async (req, res) => {
     
-    try {
         const { phoneNumber, password, gender, name } = req.body;
         const validUser = await UserRegister.findOne({phoneNumber})
         const dataLenght = await UserRegister.find()
@@ -45,11 +44,7 @@ router.post('/create', async (req, res) => {
             userId: user.userId
         })
 
-    } catch (err) {
-        res.status(500).json({
-            message: "Serverda muammo mavjud"
-        })
-    }
+   
 })
 
 // router.get('/get',auth, async (req , res) => {
